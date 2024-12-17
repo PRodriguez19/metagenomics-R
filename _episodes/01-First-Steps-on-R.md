@@ -27,8 +27,6 @@ keypoints:
 
 ### What is R?
 
-*Go ahead and request 1hr of R/RStudio session on the VACC*
-
 “R” is used to name a programming language and the software that reads and interprets the instructions written on the scripts of this language. Is specialized in statistical computing and graphics. 
 
 The R environment combines:
@@ -81,98 +79,95 @@ More precisely, R is a programming language that runs computations, while RStudi
 * Platform agnostic
 * Open source
 
-Here is what you may look at the first time you open RStudio:
+## Creating a new project directory in RStudio
 
-<a href="{{ page.root }}/fig/Welcome_R.png" >
-  <img src="{{ page.root }}/fig/Welcome_R.png" alt="RStudio graphic interface described bellow."  width="80%" height="55%" />
+Let's create a new project directory for our "Introduction to R" lesson today. 
+
+1. Open RStudio
+2. Go to the `File` menu and select `New Project`.
+3. In the `New Project` window, choose `New Directory`. Then, choose `New Project`. Name your new directory `Intro-to-R` and then "Create the project as subdirectory of:" the root of your VACC home account (`~`).
+4. Click on `Create Project`.
+5. After your project is completed, if the project does not automatically open in RStudio, then go to the `File` menu, select `Open Project`, and choose `Intro-to-R.Rproj`.
+6. When RStudio opens, you will see three panels in the window.
+7. Go to the `File` menu and select `New File`, and select `R Script`. 
+8. Go to the `File` menu and select `Save As...`, type `Intro-to-R.R` and select `Save`
+
+The RStudio interface should now look like the screenshot below.
+
+<a href="{{ page.root }}/fig/Rstudio_interface.png" >
+  <img src="{{ page.root }}/fig/Rstudio_interface.png" alt="RStudio interface."  width="20%" height="25%" />
 </a>
 
 
-The figure shows the RStudio interface. The three windows that appear 
-on the screen provide us with a space in which we can see our console
-(left side window) where the orders we want to execute are written, observe 
-the generated variables (upper right), and a series of subtabs (lower right): 
-**Files** shows us files that we have used, **Plots** shows us graphics that we 
-are generating, **Packages** shows the packages that we have downloaded, **Help** 
-it gives us information on packages, commands, and/or functions that we do not 
-know, but works only with an internet connection, and **Viewer** shows a results 
-preview in R markdown files.
+### What is a project in RStudio?
 
-If we click on the option `File`/`New File`/`R Script`, we open up a script and
-we get what we can call an _RStudio nautical chart_
+It is simply a directory that contains everything related your analyses for a specific project. RStudio projects are useful when you are working on context- specific analyses and you wish to keep them separate. When creating a project in RStudio you associate it with a working directory of your choice (either an existing one, or a new one). A `. RProj file` is created within that directory and that keeps track of your command history and variables in the environment. The `.RProj file` can be used to open the project in its current state but at a later date.
 
-<a href="{{ page.root }}/fig/Welcome_Rscript.png">
-  <img src="{{ page.root }}/fig/Welcome_Rscript.png" alt="
-A graphic interphase window with four panels.
-A the top left, a new panel with an R script called *Untitled1* 
-is added from the previous image, 
-so now there are four panels inside the Rstudio graphic interphase window"  width="80%" height="55%"/>
+When a project is **(re) opened** within RStudio the following actions are taken:
+ 
+* A new R session (process) is started
+* The .RData file in the project's main directory is loaded, populating the environment with any objects that were present when the project was closed. 
+* The .Rhistory file in the project's main directory is loaded into the RStudio History pane (and used for Console Up/Down arrow command history).
+* The current working directory is set to the project directory.
+* Previously edited source documents are restored into editor tabs
+* Other RStudio settings (e.g. active tabs, splitter positions, etc.) are restored to where they were the last time the project was closed.
+
+*Information adapted from [RStudio Support Site](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)*
+
+
+## Organizing your working directory & setting up
+
+### RStudio Interface
+
+**The RStudio interface has four main panels:**
+
+1. **Console**: where you can type commands and see output. *The console is all you would see if you ran R in the command line without RStudio.*
+2. **Script editor**: where you can type out commands and save to file. You can also submit the commands to run in the console.
+3. **Environment/History**: environment shows all active objects and history keeps track of all commands run in console
+4. **Files/Plots/Packages/Help** is a handy browser for your current files, this is where your plots will appear, you can view package information, and much more.
+
+### Viewing your working directory
+
+Before we organize our working directory, let's check to see where our current working directory is located by typing into the console:
+
+~~~
+getwd() # return an abolute filepath
+# this is also our first example of a function 
+~~~
+{: .language-r}
+
+
+Your working directory should be the `Intro-to-R` folder constructed when you created the project. The working directory is where RStudio will automatically look for any files you bring in and where it will automatically save any files you create, unless otherwise specified. 
+
+You can visualize your working directory by selecting the `Files` tab from the **Files/Plots/Packages/Help** window. 
+
+<a href="{{ page.root }}/fig/Get_wd.png" >
+  <img src="{{ page.root }}/fig/Get_wd.png" alt="getwd."  width="400" />
 </a>
 
-RStudio interface with a new panel is shown. Clockwise from top left: Empty script,
-Environment/History/Connections/Tutorial, Files/Plots/Packages/Help/Viewer,
-Console/Terminal/Jobs. You can enter your online RStudio to see your environment.
-Let's copy your instance address into your browser (Chrome or Firefox) and login into Rstudio. 
-The address should look like this:  `http://ec2-3-235-238-92.compute-1.amazonaws.com:8787/` Although 
-data are already stored in your instance, in case you need to you can download them [here](https://drive.google.com/file/d/15dW1sQCIhtmCUvS0IUOMPBH5m1gqNB0m/view?usp=sharing).
 
-### Review of the setup
+If you wanted to choose a different directory to be your working directory, you could navigate to a different folder in the `Files` tab, then, click on the `More` dropdown menu which appears as a Cog and select `Set As Working Directory`.
 
-As we have revisited throughout the lesson, maintaining related data in a single folder
-is desirable. In RStudio, this folder is called the **working directory**. It is where R will be looking 
-for and saving your files. If you need to check where your working directory is located use `getwd()`.
-If your working directory is not what you expected(*i.e. ~/dc_workshop/taxonomy/*), it can always be changed by clicking on the blue 
-gear icon:
-<a href="https://user-images.githubusercontent.com/67386612/118722611-f7f59400-b7f1-11eb-8ca9-a72561f9c529.png">
-  <img src="https://user-images.githubusercontent.com/67386612/118722611-f7f59400-b7f1-11eb-8ca9-a72561f9c529.png" alt="settings icon" />
-</a> on the `Files` tab, pick the option _Set As Working Directory_. Alternatively, you can use the `setwd()` command for changing it.
+<a href="{{ page.root }}/fig/Set_wd.png" >
+  <img src="{{ page.root }}/fig/Set_wd.png" alt="setwd."  width="400" />
+</a>
+ 
 
-Let's use these commands to set our working directory where we have stored our files from the previous 
-lessons:
+### Structuring your working directory
 
-~~~
-> setwd("~/dc_workshop/taxonomy/")
-~~~
-{: .language-r}
+To organize your working directory for a particular analysis, you should separate the original data (raw data) from intermediate datasets. For instance, you may want to create a `data/` directory within your working directory that stores the raw data, and have a `results/` directory for intermediate datasets and a `figures/` directory for the plots you will generate.
 
-## Having a dialogue with R
+Let's create these three directories within your working directory by clicking on `New Folder` within the `Files` tab. 
 
-There are two main paths to interact with R in RStudio:
-* Using the console.
-* Creating and editing script files.
+When finished, your working directory should look like:
 
-The console is where commands can be typed and executed immediately, and where the 
-results from executed commands will be displayed (like in the Unix shell). If R is ready to accept commands, the R console shows
-the `>` prompt. You can type instructions directly into the console and press "Enter", but they will 
-be forgotten when you close the session.
+<a href="{{ page.root }}/fig/Complete_wd_setup.png" >
+  <img src="{{ page.root }}/fig/Complete_wd_setup.png" alt="Complete_wd_setup."  width="400" />
+</a>
 
-For example, let's do some math and save it in R objects. We can store values in variables by
-using the assignment operator `<-`:
-~~~ 
-> 4+3
-> addition <- 4+3
-> subtraction <- 2+1
-> total <- addition -subtraction
-> total
-~~~
-{: .language-r}
 
-What would happen if you tap `ctrl` + `l`? Without the lesson page, can you remember what numbers the sum is made of in the variable `addition`?
-**Reproducibility** is in our minds when we program (and when we do science). For this purpose, 
-is convenient to type the commands we want to save in the script editor, and save the script periodically. 
-We can run our code lines in the script by the shortcut `ctrl` + `Enter` 
-(on Mac, `Cmd` + `Return` will work). Thus, the command on the current line or the instructions
-in the currently selected text will be sent to the console and will be executed.
+#### Setting up 
 
-Time can be the enemy or ally of memory. We want to be sure to remember why we wrote the commands
-in our scripts, so we can leave comments(lines of no executable text) by beginning a line with `#`:
-~~~
-# Let's do some math in RStudio. How many times a year do the supermarkets change the bread that they use for
-# display? if they change it every 15 days:
-> 365/15
-~~~
-{: .language-r}
-~~~
-[1] 24.3333
-~~~
-{: .output}
+This is more of a housekeeping task. In the future, we may be writing long lines of code in our script editor and want to make sure that the lines "wrap" and you don't have to scroll back and forth to look at your long line of code.
+
+Click on Code -> Soft Wrap Long lines (make sure this is checked off)
