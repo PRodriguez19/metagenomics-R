@@ -40,7 +40,9 @@ The R environment combines:
 
 ### Why use R?
 
-<img src="fig/why_R.png" width="600" style="border: 2px solid grey">
+<a href="{{ page.root }}/fig/why_R.png" >
+  <img src="{{ page.root }}/fig/why_R.png" alt="R vs RStudio." width="600" style="border: 2px solid grey"/>
+</a>
 
 R is a powerful environment. It has a wide range of statistics and general data analysis and visualization capabilities.
 
@@ -53,25 +55,24 @@ R is a powerful environment. It has a wide range of statistics and general data 
 #### Example of R used in the media
 * *"At the BBC data team, we have developed an R package and an R cookbook to make the process of creating publication-ready graphics in our in-house style..."* - [BBC Visual and Data Journalism cookbook for R graphics](https://bbc.github.io/rcookbook/)
 
-<hr style="border:1px solid blue">
+
 
 ### What is RStudio?
 
 Here, we will use be using R via RStudio. First time users often confuse the two. At its simplest, R is like a car's engine while RStudio is like a car's dashboard as illustrated in the 
 Figure below.
 
-<p align="center">
-<img src="fig/R_vs_RStudio_1.png" width="900">
-</p>
+
+<a href="{{ page.root }}/fig/R_vs_RStudio_1.png" >
+  <img src="{{ page.root }}/fig/R_vs_RStudio_1.png" alt="R vs RStudio." />
+</a>
 
 More precisely, R is a programming language that runs computations, while RStudio is a freely available open-source **integrated development environment (IDE)** that provides an interface by adding many convenient features and tools. So just as the way of having access to a speedometer, rearview mirrors, and a navigation system makes driving much easier, using RStudio's interface makes using R much easier as well. 
 
 > RStudio provides an environment with many features to make using R easier and is a great alternative to working on R in the terminal. 
 
-<img src="fig/rstudio_logo.png" width="300">
-
 <a href="{{ page.root }}/fig/rstudio_logo.png" >
-  <img src="{{ page.root }}/fig/rstudio_logo.png" alt="RStudio logo."  width="80%" height="55%" />
+  <img src="{{ page.root }}/fig/rstudio_logo.png" alt="RStudio logo."  width="20%" height="25%" />
 </a>
 
 * Graphical user interface, not just a command prompt
