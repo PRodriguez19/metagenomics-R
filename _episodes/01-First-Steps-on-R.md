@@ -25,34 +25,60 @@ keypoints:
 
 ## RStudio setup 
 
-### What is R, and what can it be used for?
+### What is R?
 
-"R" is used to name a programming language and the 
-software that reads and interprets the instructions written on the 
-scripts of this language. Is specialized in statistical 
-computing and graphics. RStudio is the most popular program for script writing and interaction with R software.
+*Go ahead and request 1hr of R/RStudio session on the VACC*
 
-R uses a series of written commands, which is great, believe us! 
-If you rely on clicking, pointing, and remembering where and 
-why to point here or click there, mistakes are prone to occur. 
-Moreover, if you manage to get more data, it is easier to just
-*re-run* your script to obtain results. Also, working with scripts 
-makes the steps you follow for your analysis clear and shareable. 
-Here are some of the advantages of working with R:  
+“R” is used to name a programming language and the software that reads and interprets the instructions written on the scripts of this language. Is specialized in statistical computing and graphics. 
 
-- R code is reproducible
-- R produces high-quality graphics
-- R has a large community
-- R is interdisciplinary 
-- R works on data of all colors and sizes
-- R is free!
+The R environment combines:
 
-### A nautical chart of RStudio 
+* effective handling of big data 
+* collection of integrated tools
+* graphical facilities
+* simple and effective programming language
 
-RStudio is an [Integrated Development Environment(IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment#:~:text=An%20integrated%20development%20environment%20(IDE,automation%20tools%20and%20a%20debugger.)) 
-which we will use to write code,
-navigate the files from our computer/cloud, try code, inspect the variables we are 
-going to create, and visualize our plots.
+### Why use R?
+
+<img src="fig/why_R.png" width="600" style="border: 2px solid grey">
+
+R is a powerful environment. It has a wide range of statistics and general data analysis and visualization capabilities.
+
+* Data handling, wrangling, and storage
+* Wide array of statistical methods and graphical techniques available
+* Easy to install on any platform and use (and it’s free!)
+* Open source with a large and growing community of peers
+* R produces high-quality graphics that are reproducible 
+
+#### Example of R used in the media
+* *"At the BBC data team, we have developed an R package and an R cookbook to make the process of creating publication-ready graphics in our in-house style..."* - [BBC Visual and Data Journalism cookbook for R graphics](https://bbc.github.io/rcookbook/)
+
+<hr style="border:1px solid blue">
+
+### What is RStudio?
+
+Here, we will use be using R via RStudio. First time users often confuse the two. At its simplest, R is like a car's engine while RStudio is like a car's dashboard as illustrated in the 
+Figure below.
+
+<p align="center">
+<img src="fig/R_vs_RStudio_1.png" width="900">
+</p>
+
+More precisely, R is a programming language that runs computations, while RStudio is a freely available open-source **integrated development environment (IDE)** that provides an interface by adding many convenient features and tools. So just as the way of having access to a speedometer, rearview mirrors, and a navigation system makes driving much easier, using RStudio's interface makes using R much easier as well. 
+
+> RStudio provides an environment with many features to make using R easier and is a great alternative to working on R in the terminal. 
+
+<img src="fig/rstudio_logo.png" width="300">
+
+<a href="{{ page.root }}/fig/rstudio_logo.png" >
+  <img src="{{ page.root }}/fig/rstudio_logo.png" alt="RStudio logo."  width="80%" height="55%" />
+</a>
+
+* Graphical user interface, not just a command prompt
+* Great learning tool 
+* Free for academic use
+* Platform agnostic
+* Open source
 
 Here is what you may look at the first time you open RStudio:
 
