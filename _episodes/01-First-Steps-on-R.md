@@ -23,7 +23,7 @@ keypoints:
 *It takes courage to sail in uncharted waters*
   -Snoopy
 
-## RStudio setup 
+## Introduction to R/RStudio
 
 ### What is R?
 
@@ -39,7 +39,7 @@ The R environment combines:
 ### Why use R?
 
 <a href="{{ page.root }}/fig/why_R.png" >
-  <img src="{{ page.root }}/fig/why_R.png" alt="R vs RStudio." width="600" style="border: 2px solid grey"/>
+  <img src="{{ page.root }}/fig/why_R.png" alt="R vs RStudio." width="600" />
 </a>
 
 R is a powerful environment. It has a wide range of statistics and general data analysis and visualization capabilities.
@@ -70,7 +70,7 @@ More precisely, R is a programming language that runs computations, while RStudi
 > RStudio provides an environment with many features to make using R easier and is a great alternative to working on R in the terminal. 
 
 <a href="{{ page.root }}/fig/rstudio_logo.png" >
-  <img src="{{ page.root }}/fig/rstudio_logo.png" alt="RStudio logo."  width="20%" height="25%" />
+  <img src="{{ page.root }}/fig/rstudio_logo.png" alt="RStudio logo."  width="300" />
 </a>
 
 * Graphical user interface, not just a command prompt
@@ -95,7 +95,7 @@ Let's create a new project directory for our "Introduction to R" lesson today.
 The RStudio interface should now look like the screenshot below.
 
 <a href="{{ page.root }}/fig/Rstudio_interface.png" >
-  <img src="{{ page.root }}/fig/Rstudio_interface.png" alt="RStudio interface."  width="20%" height="25%" />
+  <img src="{{ page.root }}/fig/Rstudio_interface.png" alt="RStudio interface."  width="600" />
 </a>
 
 
@@ -161,12 +161,12 @@ Let's create these three directories within your working directory by clicking o
 
 When finished, your working directory should look like:
 
-<a href="{{ page.root }}/fig/Complete_wd_setup.png" >
-  <img src="{{ page.root }}/fig/Complete_wd_setup.png" alt="Complete_wd_setup."  width="400" />
+<a href="{{ page.root }}/fig/complete_wd_setup.png" >
+  <img src="{{ page.root }}/fig/complete_wd_setup.png" alt="Complete_wd_setup."  width="400" />
 </a>
 
 
-#### Setting up 
+### Setting up 
 
 This is more of a housekeeping task. In the future, we may be writing long lines of code in our script editor and want to make sure that the lines "wrap" and you don't have to scroll back and forth to look at your long line of code.
 
