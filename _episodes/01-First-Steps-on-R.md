@@ -1,6 +1,6 @@
 ---
 title: "First Steps on R"
-teaching: 10
+teaching: 15
 exercises: 10
 questions:
 - "What is R, and why is important to learn to use it?"
@@ -171,3 +171,185 @@ When finished, your working directory should look like:
 This is more of a housekeeping task. In the future, we may be writing long lines of code in our script editor and want to make sure that the lines "wrap" and you don't have to scroll back and forth to look at your long line of code.
 
 Click on Code -> Soft Wrap Long lines (make sure this is checked off)
+
+## Interacting with R
+
+Now that we have our interface and directory structure set up, let's start playing with R! There are **two main ways** of interacting with R in RStudio: using the **console** or by using **script editor** (plain text files that contain your code).
+
+### Console window
+
+The **console window** (in RStudio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command.  You can type commands directly into the console, but they will be forgotten when you close the session. 
+
+Let's test it out:
+
+~~~
+3 + 5
+~~~
+{: .language-r}
+
+
+<p align="center">
+<img src="img/Console.png" width="400" style="border: 2px solid grey">
+</p>
+
+### Script editor
+
+Best practice is to enter the commands in the **script editor**, and save the script. You are encouraged to comment liberally to describe the commands you are running using `#`. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. 
+
+**The Rstudio script editor allows you to 'send' the current line or the currently highlighted text to the R console by clicking on the `Run` button in the upper-right hand corner of the script editor**. 
+
+Now let's try entering commands to the **script editor** and using the comments character `#` to add descriptions and highlighting the text to run:
+	
+	# Intro to R Lesson
+	# Feb 16th, 2016
+
+	# Interacting with R
+	
+	## I am adding 3 and 5. R is fun!
+	3+5
+
+
+Alternatively, you can run by simply pressing the `Ctrl` and `Return/Enter` keys at the same time as a shortcut.
+
+You should see the command run in the console and output the result.
+
+<p align="center">
+<img src="img/Script_editor_output.png" width="400" style="border: 2px solid grey">
+</p>
+	
+What happens if we do that same command without the comment symbol `#`? Re-run the command after removing the # sign in the front:
+
+~~~
+I am adding 3 and 5. R is fun!
+3+5
+~~~
+{: .language-r}
+
+
+Now R is trying to run that sentence as a command, and it 
+doesn't work. We get an error in the console *"Error: unexpected symbol in "I am" means that the R interpreter did not know what to do with that command."*
+
+***
+
+### Console command prompt
+
+Interpreting the command prompt can help understand when R is ready to accept commands. Below lists the different states of the command prompt and how you can exit a command:
+
+**Console is ready to accept commands**: `>`.
+
+If R is ready to accept commands, the R console shows a `>` prompt. 
+
+When the console receives a command (by directly typing into the console or running from the script editor (`Ctrl-Enter`), R will try to execute it.
+
+After running, the console will show the results and come back with a new `>` prompt to wait for new commands.
+
+
+**Console is waiting for you to enter more data**: `+`.
+
+If R is still waiting for you to enter more data because it isn't complete yet,
+the console will show a `+` prompt. It means that you haven't finished entering
+a complete command. Often this can be due to you having not 'closed' a parenthesis or quotation. 
+
+**Escaping a command and getting a new prompt**: `esc`
+
+If you're in Rstudio and you can't figure out why your command isn't running, you can click inside the console window and press `esc` to escape the command and bring back a new prompt `>`.
+
+### Keyboard shortcuts in RStudio
+In addition to some of the shortcuts described earlier in this lesson, we have listed a few more that can be helpful as you work in RStudio.
+
+| key              | action                 |
+| ---------------- | ---------------------- |
+| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>     | Run command from script editor in console with Windows or Linux|
+| <kbd>Command</kbd>+<kbd>Enter</kbd>     | Run command from script editor in console with MacOS |
+| <kbd>ESC</kbd> | Escape the current command to return to the command prompt          |
+| <kbd>Ctrl</kbd>+<kbd>1</kbd>      | Move cursor from console to script editor        |
+| <kbd>Ctrl</kbd>+<kbd>2</kbd>     | Move cursor from script editor to console |
+| <kbd>Tab</kbd>     | Use this key to complete a file path       |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>     | Comment the block of highlighted text               |
+
+
+> **Exercise**
+>
+>Try highlighting only `3 +` from your script editor and running it. Find a way to bring back the command prompt `>` in the console.
+{: .challenge} 
+
+
+## The R syntax
+Now that we know how to talk with R via the script editor or the console, we want to use R for something more than adding numbers. To do this, we need to know more about the R syntax. 
+
+
+The main "parts of speech" in R (syntax) include:
+
+  - the **comments** `#` and how they are used to document function and its content
+  - **variables** and **functions**
+  - the **assignment operator** `<-`
+
+_NOTE: indentation and consistency in spacing is used to improve clarity and legibility_
+
+We will go through each of these "parts of speech" in more detail, starting with the assignment operator.
+
+### Assignment operator
+
+To do useful and interesting things in R, we need to assign _values_ to
+_variables_ using the assignment operator, `<-`.  For example, we can use the assignment operator to assign the value of `3` to `x` by executing:
+
+~~~
+x <- 3
+~~~
+{: .language-r}
+
+
+The assignment operator (`<-`) assigns **values on the right** to **variables on the left**. 
+
+*In RStudio, typing `Alt + -` (push `Alt` at the same time as the `-` key, on Mac type `option` and the `-` key) and this will write ` <- ` in a single keystroke.*
+
+
+### Variables
+
+A variable is a symbolic name for (or reference to) information. Variables in computer programming are analogous to "buckets", where information can be maintained and referenced. On the outside of the bucket is a name. When referring to the bucket, we use the name of the bucket, not the data stored in the bucket.
+
+In the example above, we created a variable or a 'bucket' called `x`. Inside we put a value, `3`. 
+
+Let's create another variable called `y` and give it a value of 5. 
+
+~~~
+y <- 5
+~~~
+{: .language-r}
+
+
+When assigning a value to an variable, R does not print anything to the console. You can force to print the value by using parentheses or by typing the variable name.
+
+~~~
+y 
+~~~
+{: .language-r}
+
+
+You can also view information on the variable by looking in your `Environment` window in the upper right-hand corner of the RStudio interface.
+
+<p align="center">
+<img src="img/Environment.png" width="300" style="border: 2px solid grey">
+</p>
+
+Now we can reference these buckets by name to perform mathematical operations on the values contained within. What do you get in the console for the following operation: 
+
+~~~
+x + y
+~~~
+{: .language-r}
+
+
+Try assigning the results of this operation to another variable called `number`. 
+
+~~~
+number <- x + y
+~~~
+{: .language-r}
+
+
+> **Exercises**
+> 
+> 1. Try changing the value of the variable `x` to 5. What happens to `number`?
+> 
+> 2. Now try changing the value of variable `y` to contain the value 10. What do you need to do, to update the variable `number`?
