@@ -214,7 +214,7 @@ Alternatively, you can run by simply pressing the `Ctrl` and `Return/Enter` keys
 You should see the command run in the console and output the result.
 
 <a href="{{ page.root }}/fig/script_editor_output.png" >
-  <img src="{{ page.root }}/fig/script_editor_output.png" alt="script editor."  width="400" />
+  <img src="{{ page.root }}/fig/script_editor_output.png" alt="script editor."  width="300" />
 </a>
 
 	
@@ -330,7 +330,7 @@ y
 You can also view information on the variable by looking in your `Environment` window in the upper right-hand corner of the RStudio interface.
 
 <a href="{{ page.root }}/fig/environment.png" >
-  <img src="{{ page.root }}/fig/environment.png" alt="script editor."  width="300" />
+  <img src="{{ page.root }}/fig/environment.png" alt="script editor."  width="200" />
 </a>
 
 
