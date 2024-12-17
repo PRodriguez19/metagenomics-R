@@ -95,7 +95,7 @@ Let's create a new project directory for our "Introduction to R" lesson today.
 The RStudio interface should now look like the screenshot below.
 
 <a href="{{ page.root }}/fig/Rstudio_interface.png" >
-  <img src="{{ page.root }}/fig/Rstudio_interface.png" alt="RStudio interface."  width="600" />
+  <img src="{{ page.root }}/fig/Rstudio_interface.png" alt="RStudio interface."  width="800" />
 </a>
 
 
@@ -188,8 +188,8 @@ Let's test it out:
 {: .language-r}
 
 
-<a href="{{ page.root }}/fig/Console.png" >
-  <img src="{{ page.root }}/fig/Console.png" alt="Console."  width="400" />
+<a href="{{ page.root }}/fig/console.png" >
+  <img src="{{ page.root }}/fig/console.png" alt="Console."  width="400" />
 </a>
 
 ### Script editor
@@ -213,8 +213,8 @@ Alternatively, you can run by simply pressing the `Ctrl` and `Return/Enter` keys
 
 You should see the command run in the console and output the result.
 
-<a href="{{ page.root }}/fig/Script_editor_output.png" >
-  <img src="{{ page.root }}/fig/Script_editor_output.png" alt="script editor."  width="400" />
+<a href="{{ page.root }}/fig/script_editor_output.png" >
+  <img src="{{ page.root }}/fig/script_editor_output.png" alt="script editor."  width="400" />
 </a>
 
 	
@@ -232,7 +232,7 @@ doesn't work. We get an error in the console *"Error: unexpected symbol in "I am
 
 ***
 
-### Console command prompt
+## Console command prompt
 
 Interpreting the command prompt can help understand when R is ready to accept commands. Below lists the different states of the command prompt and how you can exit a command:
 
@@ -269,7 +269,7 @@ In addition to some of the shortcuts described earlier in this lesson, we have l
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>     | Comment the block of highlighted text               |
 
 
-> **Exercise**
+> ## Exercise 
 >
 >Try highlighting only `3 +` from your script editor and running it. Find a way to bring back the command prompt `>` in the console.
 {: .challenge} 
@@ -329,8 +329,8 @@ y
 
 You can also view information on the variable by looking in your `Environment` window in the upper right-hand corner of the RStudio interface.
 
-<a href="{{ page.root }}/fig/Environment.png" >
-  <img src="{{ page.root }}/fig/Environment.png" alt="script editor."  width="300" />
+<a href="{{ page.root }}/fig/environment.png" >
+  <img src="{{ page.root }}/fig/environment.png" alt="script editor."  width="300" />
 </a>
 
 
@@ -350,8 +350,9 @@ number <- x + y
 {: .language-r}
 
 
-> **Exercises**
+> ## Exercises 
 > 
 > 1. Try changing the value of the variable `x` to 5. What happens to `number`?
 > 
 > 2. Now try changing the value of variable `y` to contain the value 10. What do you need to do, to update the variable `number`?
+{: .challenge} 
