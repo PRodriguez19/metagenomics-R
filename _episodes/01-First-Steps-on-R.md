@@ -188,9 +188,9 @@ Let's test it out:
 {: .language-r}
 
 
-<p align="center">
-<img src="img/Console.png" width="400" style="border: 2px solid grey">
-</p>
+<a href="{{ page.root }}/fig/Console.png" >
+  <img src="{{ page.root }}/fig/Console.png" alt="Console."  width="400" />
+</a>
 
 ### Script editor
 
@@ -213,9 +213,10 @@ Alternatively, you can run by simply pressing the `Ctrl` and `Return/Enter` keys
 
 You should see the command run in the console and output the result.
 
-<p align="center">
-<img src="img/Script_editor_output.png" width="400" style="border: 2px solid grey">
-</p>
+<a href="{{ page.root }}/fig/Script_editor_output.png" >
+  <img src="{{ page.root }}/fig/Script_editor_output.png" alt="script editor."  width="400" />
+</a>
+
 	
 What happens if we do that same command without the comment symbol `#`? Re-run the command after removing the # sign in the front:
 
@@ -328,9 +329,10 @@ y
 
 You can also view information on the variable by looking in your `Environment` window in the upper right-hand corner of the RStudio interface.
 
-<p align="center">
-<img src="img/Environment.png" width="300" style="border: 2px solid grey">
-</p>
+<a href="{{ page.root }}/fig/Environment.png" >
+  <img src="{{ page.root }}/fig/Environment.png" alt="script editor."  width="300" />
+</a>
+
 
 Now we can reference these buckets by name to perform mathematical operations on the values contained within. What do you get in the console for the following operation: 
 
