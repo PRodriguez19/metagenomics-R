@@ -66,28 +66,8 @@ We can do operations with the columns:
 ~~~
 {: .output}
 
-Moreover, we can change the data type of one of the columns. Using the next line of code we can see if the musicians are 
-popular or not:
-~~~
-> typeof(musician$likes)
-~~~
-{: .language-r}
-~~~
-[1] "double"
-~~~
-{: .output}
 
-~~~
-> musician$likes <- as.logical(musician$likes)
-> paste("Is",musician$people, "popular? :", musician$likes, sep = " ")
-~~~
-{: .language-r}
-~~~
-[1] "Is Medtner popular? : FALSE" "Is Radwimps popular? : TRUE" "Is Shakira popular? : TRUE"
-~~~
-{: .output}
-
-Finally, we can extract information from a specific place in our data by using the "matrix" nomenclature `[-,-]`,
+In addition, we can extract information from a specific place in our data by using the "matrix" nomenclature `[-,-]`,
 where the first number inside the brackets specifies the row number, and the second the column number:
 
 <a href="https://user-images.githubusercontent.com/67386612/119908857-2a517080-bf19-11eb-8e0f-b3da6d1dcfc0.png">
