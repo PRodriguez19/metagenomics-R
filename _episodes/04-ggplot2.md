@@ -1,171 +1,133 @@
 ---
-title: "Making Graphs with ggplot2"
+title: "Installing R packages"
 teaching: 15
 exercises: 10
 questions:
-- "How can I create useful graphs in R?"
+- "How can I install packages in R?"
 objectives:
-- "Create figures using ggplot2."
 - "Install and use libraries in R."
 keypoints:
 - "The library `ggplot2` creates plots that help/remarks the data analysis."
-- "Creativity is welcome to explore and present your data."
 - "Libraries in R allow us to have sets of functions specialized in a global purpose."
 math: true
 ---
 
-## R Libraries
+## R packages
 
-Until now, we have used the basal functions included in the R language. But, R can use groups of functions for diverse purposes. These are called packages or libraries. A *package* is a family of code units (functions, classes, variables) that 
-implement a set of related tasks. Installing a package is like buying a new piece of lab equipment. Loading a package is like getting that piece of lab equipment out of a storage locker and setting it up in the working space. Packages provide additional functionality to the basic R code, much like a new piece 
-of equipment adds functionality to a lab space. R has its own [base plotting system](https://www.statmethods.net/graphs/index.html), but we will use a package that will help us to create more artistic figures:[ggplot2](https://www.statmethods.net/advgraphs/ggplot2.html).
+R contains tens of thousands of functions, objects, and help pages. But to save memory, R does not load every function, or object, or help page every time you start R. Instead, R loads only a core set known as Base R. 
 
-Let's install the ggplot2 library.
+
+### What is Base R?
+  
+This is a collection of R functions that gets loaded every time you start R. These functions provide the basics of the language, and you don't have to load a 
+
+Comprehensively, these are called **Packages**. There are 10,000+ user contributed packages and this is still growing.
+
+You can check what libraries are loaded in your current R session by typing into the console:
+
 ~~~
-> install.packages("ggplot2")
+sessionInfo() #Print version information about R, the OS and attached or loaded packages
+
+# OR
+
+search() #Gives a list of attached packages
 ~~~
 {: .language-r}
 
-Now that it is installed we have to load it. It is a good practice to load all the libraries that you will use in a script at the beginning of that script.
+
+To use additional packages will require installation. Many packages can be installed from the [CRAN](http://cran.r-project.org/) or [Bioconductor](https://www.bioconductor.org/) repositories.
+
+> ### Helpful tips for package installations
+> * Package names are case sensitive!
+> * At any point (especially if you’ve used R/Bioconductor in the past), in the console R may ask you if you want to **"update any old packages by asking Update all/some/none? [a/s/n]:". If you see this, type "a" at the prompt and hit Enter** to update any old packages. _Updating packages can sometimes take awhile to run._ If you are short on time, you can choose "n" and proceed. Without updating, you run the risk of conflicts between your old packages and the ones from your updated R version later down the road. 
+> * If you see a message in your console along the lines of “binary version available but the source version is later”, followed by a question, **“Do you want to install from sources the package which needs compilation? y/n”, type n for no, and hit enter.**
+
+
+## Package installation from CRAN 
+
+CRAN is a repository where the latest downloads of R (and legacy versions) are found in addition to source code for thousands of different user contributed R packages.
+
+<a href="{{ page.root }}/fig/cran_packages.png" >
+  <img src="{{ page.root }}/fig/cran_packages.png" alt="cran_packages"  width="600" />
+</a>
+
+Packages for R can be installed from the [CRAN](http://cran.r-project.org/) package repository using the `install.packages` function. This function will download the source code from on the CRAN mirrors and install the package (and any dependencies) locally on your computer. 
+
+An example is given below for the `ggplot2` package that will be required for some plots we will create later on. Run this code to install `ggplot2`.
+
+
 ~~~
+#install.packages("ggplot2")
+~~~
+{: .language-r}
+
+
+### Package installation from Bioconductor
+Alternatively, packages can also be installed from [Bioconductor](https://www.bioconductor.org/), another repository of packages which provides tools for the analysis and comprehension of high-throughput **genomic data**. These packages includes (but is not limited to) tools for performing statistical analysis, annotation packages, and accessing public datasets.
+
+<a href="{{ page.root }}/fig/bioconductor_logo.png" >
+  <img src="{{ page.root }}/fig/bioconductor_logo.png" alt="bioconductor_logo"  width="300" />
+</a>
+
+
+There are many packages that are available in CRAN and Bioconductor, but there are also packages that are specific to one repository. Generally, you can find out this information with a Google search or by trial and error. 
+
+To install from Bioconductor, you will first need to install BiocManager. *This only needs to be done once ever for your R installation.* 
+Note that in the code below we are using Bioconductor to then install phyloseq using the `install()` function. 
+
+~~~
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("phyloseq")
+~~~
+{: .language-r}
+
+> The code above may not be familiar to you - it is essentially using a new operator, a double colon `::` to execute a function from a particular package. This is the syntax: `package::function_name()`. 
+
+### Loading libraries
+Once you have the package installed, you can **load the library** into your R session for use. Any of the functions that are specific to that package will be available for you to use by simply calling the function as you would for any of the base functions. *Note that quotations are not required here.*
+
+
+```r
 library(ggplot2)
-~~~
-{: .language-r}
+```
 
-## Visualizing data with ggplot2
+You can also check what is loaded in your current environment by using `sessionInfo()` and you should see your package listed as:
 
-ggplot2 has been created with the idea that any graph can be expressed with three components:
+```r
+other attached packages:
+[1] ggplot2_2.0.0
+```
 
-* Data set
-* Coordinates
-* Set of **geoms**, that is the visual representation of the data 
+In this case there are several other packages that were also loaded along with `ggplot2`.
 
-These **geoms** can be thought of as layers that can be overlapped one over another, so special care 
-is required to show useful information layers to deliver a message. We are going to create an 
-example with some of the data that we already have. 
-~~~
-> musician
-~~~
-{: .language-r}
+Remember you only need to install a package once in R/RStudio. 
 
-~~~
-    people pieces likes
-1  Medtner    722 FALSE
-2 Radwimps    187  TRUE
-3  Shakira     68  TRUE
-~~~
-{: .output}
+**However, to use the package, you will need to load the library every time we start a new R/RStudio environment.**
 
-First, let's try to make a figure only with the data and coordinates components, to see what we are talking about.
-~~~
-> ggplot(data= musician,
-       mapping = aes(x = people, y = pieces))
-~~~
-{: .language-r}
+You can think of this as **installing a bulb** versus **turning on the light**. 
 
-<a href="{{ page.root }}/fig/R-04-01.png">
-  <img src="{{ page.root }}/fig/R-04-01.png" alt=" The graph is only a grid with the pieces title and numbers on the y-axis and the people title and the musician names on the x-axis." />
+<a href="{{ page.root }}/fig/install_vs_library.jpeg" >
+  <img src="{{ page.root }}/fig/install_vs_library.jpeg" alt="install_vs_library"  width="600" />
 </a>
-<em> Figure 1. A graph without data representation. <em/>
 
-Unraveling the above code. We first called the `ggplot` function (*i.e. ggplot()*). This will tell R that we want to 
-create a new plot, and the parameters indicated inside this function will apply to all the layers of the plot. We 
-gave two arguments to the `ggplot` code: (i) the data that we want to show in our figure (*i.e. data = musician*),
- and (ii) the way of displaying it in the graph (*i.e.* mapping = aes(x = people,y = pieces)),
-which will tell `ggplot` how the variables will be mapped in the figure. In this case, **x** is the name of the 
-musicians, and **y** is the number of pieces each of them composed. It is noticeable that we did not need to express the entire path to access
-these columns to the `aes` function (*i.e.* x = musician[,"people"]). That is because the code is so well 
-written that figures it out by itself. With this, we have made the base of our plot, but we can't see the data 
-because we have not chosen a graphic way of representing it (_i.e._ the *geoms*).
 
-~~~
-> ggplot(data= musician,
-        mapping = aes(x = people, y = pieces))+
-  geom_col()
-~~~
-{: .language-r}
+*Analogy and image credit to [Dianne Cook](https://twitter.com/visnut/status/1248087845589274624) of [Monash University](https://www.monash.edu/).* 
 
-<a href="{{ page.root }}/fig/R-04-02.png">
-  <img src="{{ page.root }}/fig/R-04-02.png" alt="The same grid as before but with a column for each musician." />
+### Finding functions specific to a package
+
+This is your first time using `ggplot2`, how do you know where to start and what functions are available to you? One way to do this, is by using the `Package` tab in RStudio. If you click on the tab, you will see listed all packages that you have installed. For those *libraries that you have loaded*, you will see a blue checkmark in the box next to it. Scroll down to `ggplot2` in your list:
+
+<a href="{{ page.root }}/fig/ggplot_help.png" >
+  <img src="{{ page.root }}/fig/ggplot_help.png" alt="ggplot_help"  width="300" />
 </a>
-<em> Figure 2. Bar plot of the pieces composed by each musician. <em/>
 
-Some elements of the graphs can be informative or merely decorative. If we want it to be informative, it needs to go 
-inside the `aes()` function and say what information it will display. If we want it to be decorative it must be outside of `aes()`.
-Let's see how this work with the color.
 
-~~~
-> ggplot(data= musician,
-       mapping = aes(x = people, y = pieces))+
-  geom_col(color = "blue")
-~~~
-{: .language-r}
+If your library is successfully loaded you will see the box checked, as in the screenshot above. Now, if you click on `ggplot2` RStudio will open up the help pages and you can scroll through.
 
-<a href="{{ page.root }}/fig/R-04-03.png">
-  <img src="{{ page.root }}/fig/R-04-03.png" alt="Same graph as before but each bar has blue edges." />
-</a>
-<em> Figure 3. Bar plot with the decorative color parameter.<em/>
+An alternative is to find the help manual online, which can be less technical and sometimes easier to follow. For example, [this website](https://ggplot2.tidyverse.org/reference/index.html) is much more comprehensive for ggplot2 and is the result of a Google search. Many of the Bioconductor packages also have very helpful vignettes that include comprehensive tutorials with mock data that you can work with.
 
-~~~
-ggplot(data= musician,
-       mapping = aes(x = people, y = pieces))+
-  geom_col(aes(color= likes))
-~~~
-{: .language-r}
+If you can't find what you are looking for, you can use the [rdocumention.org](https://www.rdocumentation.org/) website that search through the help files across all packages available.
 
-<a href="{{ page.root }}/fig/R-04-04.png">
-  <img src="{{ page.root }}/fig/R-04-04.png" alt="The same bar graph but now the edge of the bar for Medtner is pink and the edges of the bars for Radwimps and Shakira are blue. There is a legend indicating that pink means FALSE and blue means TRUE." />
-</a>
-<em> Figure 4. Bar plot with the informative color parameter. <em/>
 
->## Exercise 1: Global and specific parameters.
-> 
-> Search for more available geoms and chose one that is appropriate to display the same information as the bars. 
-> Add it to your graph using the `+` sign after the last geom.
-> Explore what happens if the color parameters are in the `ggplot()` part of the command or in each of the geoms.
->
->> ## Solution
->> ~~~
->> ggplot(data= musician,
->>       mapping = aes(x = people, y = pieces))+
->>  geom_col(aes(color= likes))+
->>  geom_point()
->> ~~~
->> {: .language-r}
->> <a href="{{ page.root }}/fig/R-04-05.png">
->>   <img src="{{ page.root }}/fig/R-04-05.png" alt="The same graph as the last one but with a black point at the top of each bar." />
->> </a>
->> <em> Figure 5. Bar and point plot. <em/>
->> 
->> ~~~
->> ggplot(data= musician,
->>       mapping = aes(x = people, y = pieces, color= likes))+
->>  geom_col()+
->>  geom_point()
->> ~~~
->> {: . language-r}
->> <a href="{{ page.root }}/fig/R-04-06.png">
->>   <img src="{{ page.root }}/fig/R-04-06.png" alt="The same graph as the last one but the points now have the same color as the edges of the corresponding bar." />
->> </a>
->> <em> Figure 6. Bar and point plot with global color. <em/>
-> {: .solution}
-{: .challenge} 
-
->## Advanced exercise: Personalize informative colors.
-> 
-> Search how to personalize which colors are used when the color is an informative parameter.
->> ## Solution
->> ~~~
->> ggplot(data= musician,
->>       mapping = aes(x = people, y = pieces, color= likes))+
->>  scale_color_manual(values= c("blue", "orange"))+
->>  geom_col()+
->>  geom_point()
->> ~~~
->> {: .language-r}
->> <a href="{{ page.root }}/fig/R-04-07.png">
->>   <img src="{{ page.root }}/fig/R-04-07.png" alt="The same graph as the last one but with blue as the color for FALSE value and orange as the color for TRUE value." />
->> </a>
->> <em> Figure 7. Bar and point plot with personalized colors. <em/>
-> {: .solution}
-{: .challenge} 
