@@ -9,119 +9,75 @@ objectives:
 keypoints:
 - "Data-frames contain multiple columns with different types of data."
 ---
-## Data-frames: The power of interdisciplinarity 
-Data-frames are the powerful data structures in R. Let's begin by creating a mock data set:
-~~~
-> musician <- data.frame(people = c("Medtner", "Radwimps", "Shakira"),
-						 pieces = c(722,187,68),
- 						 likes = c(0,1,1))
-> musician
-~~~
-{: .language-r}
-The content of our new object:
-~~~
-    people pieces likes
-1  Medtner    722     0
-2 Radwimps    187     1
-3  Shakira     68     1
-~~~
-{: .output}
+## Data-frames
 
-We have just created our first data-frame. We can see if this is true using the `class()` command:
-~~~
-> class(musician)
-~~~
-{: .language-r}
-~~~
-[1] "data.frame"
-~~~
-{: .language-r}
-A data-frame is a collection of vectors (_i.e._ a list) whose components must be of the same data type within
-each vector:
+A `data.frame` is similar to a matrix in that it's a collection of vectors of the **same length** and each vector represents a column. However, in a dataframe **each vector can be of a different data type** (e.g., characters, integers, factors). In the data frame pictured below, the first column is character, the second column is numeric, the third is character, and the fourth is logical.
 
-<a href="https://user-images.githubusercontent.com/67386612/118735756-b4595500-b806-11eb-8bd6-d189b9463eca.png">
-  <img src="https://user-images.githubusercontent.com/67386612/118735756-b4595500-b806-11eb-8bd6-d189b9463eca.png" alt="Dataframe shown as table with columns named: people, pieces, likes. And rows names: 1,2,3" />
+<a href="{{ page.root }}/fig/dataframe.png" >
+  <img src="{{ page.root }}/fig/dataframe.png" alt="dataframe" />
 </a>
-<em>Figure 3. Structure of the created data-frame.<em/>
 
-We can begin to explore our new object by pulling out columns using the `$` operator. In order to use it, 
-you need to write the name of your data-frame, followed by the `$` operator and the name of the column 
-you want to extract:
+
+A data frame is the most common way of storing data in R, and if used systematically makes data analysis easier. 
+
+We can create a dataframe by bringing **vectors** together to **form the columns**. We do this using the `data.frame()` function, and giving the function the different vectors we would like to bind together. *This function will only work for vectors of the same length.*
+
 ~~~
-> musician$people
+# Create a data frame and store it as a variable called 'df'
+df <- data.frame(species, glengths)
 ~~~
 {: .language-r}
-~~~
-[1] "Medtner"  "Radwimps" "Shakira" 
-~~~
-{: .output}
 
-We can do operations with the columns:
+
+We can see that a new variable called `df` has been created in our `Environment` within a new section called `Data`. In the `Environment`, it specifies that `df` has 3 observations of 2 variables. What does that mean? In R, rows always come first, so it means that `df` has 3 rows and 2 columns. We can get additional information if we click on the blue circle with the white triangle in the middle next to `df`. It will display information about each of the columns in the data frame, giving information about what the data type is of each of the columns and the first few values of those columns.
+
+Another handy feature in RStudio is that if we hover the cursor over the variable name in the `Environment`, `df`, it will turn into a pointing finger. If you click on `df`, it will open the data frame as it's own tab next to the script editor. We can explore the table interactively within this window. To close, just click on the X on the tab.
+
+As with any variable, we can print the values stored inside to the console if we type the variable's name and run. 
+
 ~~~
-> musician$pieces + 20
+df
 ~~~
 {: .language-r}
-~~~
-[1] 742 207  88
-~~~
-{: .output}
 
+#### Data frame example 
 
-In addition, we can extract information from a specific place in our data by using the "matrix" nomenclature `[-,-]`,
-where the first number inside the brackets specifies the row number, and the second the column number:
-
-<a href="https://user-images.githubusercontent.com/67386612/119908857-2a517080-bf19-11eb-8e0f-b3da6d1dcfc0.png">
-  <img src="https://user-images.githubusercontent.com/67386612/119908857-2a517080-bf19-11eb-8e0f-b3da6d1dcfc0.png" alt="Dataframe shown as table, showing that [1,] corrseponds to row 1, [2,] to row two, [3,] to row 3, [,1] to clumn 1, [,2] to column 2, [,3] to column 3. And pinting to location [1,2] that corresponds to the number 772" />
-</a>
-<em>Figure 4. Extraction of specific data in a data-frame and a matrix.<em/>
+We can create a more complex data frame using the following syntax:
 
 ~~~
-> musician[1,2]  # The number of pieces that Nikolai Medtner composed
+df <- data.frame(id = c("a", "b", "c"),
+                 x = c(1, 2, 3),
+                 y = c(TRUE, TRUE, FALSE))
 ~~~
 {: .language-r}
-~~~
-[1] 722
-~~~
-{: .output}
 
-We can also call for that data by calling the column by it's name
 
-~~~
-> musician[1,"pieces"]  # The number of pieces that Nikolai Medtner composed
-~~~
-{: .language-r}
-~~~
-[1] 722
-~~~
-
-> ## Exercise 2: 
+> **Exercise**
 > 
-> Complete the lines of code to obtain the required information
+> Create a data frame called `tax_table` with the following vectors as columns:
 > 
-> |------------------------------+------------------------------------------------------------------------------|  
-> | **Code**                                        |     **Information required**                                     |  
-> |------------------------------+------------------------------------------------------------------------------|  
-> | > musician[____,____]                       |  Pieces composed by Shakira                                  |  
-> |------------------------------+------------------------------------------------------------------------------|  
-> | > (musician______)___2  | Pieces composed by all musicians if they were half of productive (The half of their actual pieces) |   
-> |------------------------------+------------------------------------------------------------------------------|  
-> | > musician$_____ <- c(_____,_____,_____)    | Redefine the `likes` column to make all the musicians popular!  |  
-> |------------------------------+------------------------------------------------------------------------------| 
->
->
-> がんばって! (ganbatte; *good luck*):
->> ## Solution
->> 
->> |------------------------------+------------------------------------------------------------------------------|  
->> | **Code**                                        |     **Information required**                                     |  
->> |------------------------------+------------------------------------------------------------------------------|  
->> | > musician[3,"pieces"]                       |  Pieces composed by Shakira                                  |  
->> |------------------------------+------------------------------------------------------------------------------|  
->> | > (musician$pieces)/2  | Pieces composed by all musicians if they were half of productive (The half of their actual pieces) |   
->> |------------------------------+------------------------------------------------------------------------------|  
->> | > musician$likes <- c("TRUE","TRUE","TRUE")    | Redefine the `likes` columne to make all the musicians popular!  |  
->> |------------------------------+------------------------------------------------------------------------------| 
->>
-> {: .solution}
+>   + id: Family, Genus, Species
+>   + sample1: Rhodo, Rhodobacter, capsulatus
+>   + sample2: Rhodo, Paracoccus, yeei 
 {: .challenge} 
+
+
+  
+You have just created your first data frame. A data-frame is a collection of vectors (i.e. a list) whose components must be of the same data type within each vector. To view the data frame use the following: 
+
+
+~~~
+View(tax_table)
+~~~
+{: .language-r}
+
+We can pull out columns from the new object using the `$` operator. In order to use it, you will need to write the name of your data frame followed by the `$` operator with the name of the column you want to extract.
+
+~~~
+tax_table$Species
+~~~
+{: .language-r}
+
+
+
 
