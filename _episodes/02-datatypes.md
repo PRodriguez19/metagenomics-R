@@ -179,32 +179,6 @@ molecules[c(-1, -3)] ## all but 1st/3rd ones
 
 
 
-## Tips on variable names
-Variables can be given almost any name, such as `x`, `current_temperature`, or `subject_id`. However, there are some rules / suggestions you should keep in mind:
-
-- Make your names explicit and not too long.
-- Avoid names starting with a number (`2x` is not valid but `x2` is)
-- Avoid names of fundamental functions in R (e.g., `if`, `else`, `for`, see [here](https://statisticsglobe.com/r-functions-list/) for a complete list). 
-- Avoid dots (`.`) within a variable name as in `my.dataset`. There are many functions
-in R with dots in their names for historical reasons, but because dots have a
-special meaning in R (for methods) and other programming languages, it's best to
-avoid them. 
-- Use nouns for object names and verbs for function names
-- Keep in mind that **R is case sensitive** (e.g., `genome_length` is different from `Genome_length`)
-- Be consistent with the styling of your code (where you put spaces, how you name variable, etc.). In R, two popular style guides are [Hadley Wickham's style guide](http://adv-r.had.co.nz/Style.html) and [Google's](http://web.stanford.edu/class/cs109l/unrestricted/resources/google-style.html).
-
-***
-
-## Best practices
-
-Before we move on to more complex concepts and getting familiar with the language, we want to point out a few things about best practices when working with R which will help you stay organized in the long run:
-
-* Code and workflow are more reproducible if you can document everything that we do. Your end goal is not just to "do stuff", but to do it in a way that anyone can easily and exactly replicate your workflow and results. **All code should be written in the script editor and saved to file, rather than working in the console.** 
-* The **R console** should be mainly used to inspect objects, test a function or get help. 
-* Use `#` signs to comment. **Comment liberally** in your R scripts. This will help future you and other collaborators know what each line of code (or code block) was meant to do. Anything to the right of a `#` is ignored by R. 
-
-
-
 
 
 

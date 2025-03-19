@@ -44,7 +44,7 @@ The R environment combines:
 
 R is a powerful environment. It has a wide range of statistics and general data analysis and visualization capabilities.
 
-### Benefits of using/learning R
+### Benefits of learning R
 
 * **R is interdisciplinary and extensible:** There are 10,000+ packages that can be installed to extend its capabilities. R provides a framework that allows you to combine statistical approaches from many scientific disciplines. 
 * **R works on data of all shapes and sizes:** The skills you learn with R scale easily with the size of your dataset. Whether your dataset has hundreds or thousands of lines, it won't make much difference. R is designed for data analysis, and it comes with special data structures and data types that make handling missing data convenient. 
@@ -96,6 +96,9 @@ Let's create a new project directory for our "Introduction to R" lesson today.
 2. Go to the `File` menu and select `New Project`.
 3. In the `New Project` window, choose `New Directory`. Then, choose `New Project`. Name your new directory `Intro-to-R` and then "Create the project as subdirectory of:" the root of your VACC home account (`~`).
 4. Click on `Create Project`.
+5. When RStudio opens, you will see three panels in the window. We would like to generate the fourth panel. 
+6. Go to the `File` menu and select `New File`, and select `R Script`. 
+7. Go to the `File` menu and select `Save As...`, type `Intro-to-R.R` and select `Save`
 
 The RStudio interface should now look like the screenshot below: 
 
@@ -139,7 +142,7 @@ When a project is **(re) opened** within RStudio the following actions are taken
 
 The working directory is an important concept to understand. It is the place from where R will be looking for and saving the files. When you write code for your project, it should refer to files in relation to the root of your working directory and only need files within this structure.
 
-Using RStudio projects makes this easy and ensures that your working directory is set properly. If you need to check it, you can use getwd(). If for some reason your working directory is not what it should be, you can change it in the RStudio interface by navigating in the file browser where your working directory should be, and clicking on the blue gear icon More, and select Set As Working Directory. Alternatively you can use setwd("/path/to/working/directory") to reset your working directory. However, your scripts should not include this line because it will fail on someone else’s computer.
+Using RStudio projects makes this easy and ensures that your working directory is set properly. If you need to check it, you can use `getwd()`. If for some reason your working directory is not what it should be, you can change it in the RStudio interface by navigating in the file browser where your working directory should be, and clicking on the blue gear icon More, and select Set As Working Directory. Alternatively you can use setwd("/path/to/working/directory") to reset your working directory. However, your scripts should not include this line because it will fail on someone else’s computer.
 
 Let's check to see where our current working directory is located by typing into the console:
 
@@ -215,11 +218,11 @@ Best practice is to enter the commands in the **script editor**, and save the sc
 Now let's try entering commands to the **script editor** and using the comments character `#` to add descriptions and highlighting the text to run:
 	
 	# Intro to R Lesson
-	# Feb 16th, 2016
+	# March 19th, 2025
 
 	# Interacting with R
 	
-	## I am adding 3 and 5. R is fun!
+	## I am adding 3 and 5. 
 	3+5
 
 
@@ -241,8 +244,7 @@ I am adding 3 and 5. R is fun!
 {: .language-r}
 
 
-Now R is trying to run that sentence as a command, and it 
-doesn't work. We get an error in the console *"Error: unexpected symbol in "I am" means that the R interpreter did not know what to do with that command."*
+Now R is trying to run that sentence as a command, and it doesn't work. We get an error in the console *"Error: unexpected symbol in "I am" means that the R interpreter did not know what to do with that command."*
 
 ***
 
@@ -370,3 +372,27 @@ number <- x + y
 > 
 > 2. Now try changing the value of variable `y` to contain the value 10. What do you need to do, to update the variable `number`?
 {: .challenge} 
+
+## Tips on variable names
+Variables can be given almost any name, such as `x`, `current_temperature`, or `subject_id`. However, there are some rules / suggestions you should keep in mind:
+
+- Make your names explicit and not too long.
+- Avoid names starting with a number (`2x` is not valid but `x2` is)
+- Avoid names of fundamental functions in R (e.g., `if`, `else`, `for`, see [here](https://statisticsglobe.com/r-functions-list/) for a complete list). 
+- Avoid dots (`.`) within a variable name as in `my.dataset`. There are many functions
+in R with dots in their names for historical reasons, but because dots have a
+special meaning in R (for methods) and other programming languages, it's best to
+avoid them. 
+- Use nouns for object names and verbs for function names
+- Keep in mind that **R is case sensitive** (e.g., `genome_length` is different from `Genome_length`)
+- Be consistent with the styling of your code (where you put spaces, how you name variable, etc.). In R, two popular style guides are [Hadley Wickham's style guide](http://adv-r.had.co.nz/Style.html) and [Google's](http://web.stanford.edu/class/cs109l/unrestricted/resources/google-style.html).
+
+***
+
+## Best practices
+
+Before we move on to more complex concepts and getting familiar with the language, we want to point out a few things about best practices when working with R which will help you stay organized in the long run:
+
+* Code and workflow are more reproducible if you can document everything that we do. Your end goal is not just to "do stuff", but to do it in a way that anyone can easily and exactly replicate your workflow and results. **All code should be written in the script editor and saved to file, rather than working in the console.** 
+* The **R console** should be mainly used to inspect objects, test a function or get help. 
+* Use `#` signs to comment. **Comment liberally** in your R scripts. This will help future you and other collaborators know what each line of code (or code block) was meant to do. Anything to the right of a `#` is ignored by R. 

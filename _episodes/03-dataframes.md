@@ -10,6 +10,17 @@ keypoints:
 - "Data-frames contain multiple columns with different types of data."
 ---
 
+## Matrix
+
+A `matrix` in R is a collection of vectors of **same length and identical datatype**. Vectors can be combined as columns in the matrix or by row, to create a 2-dimensional structure.
+
+<a href="{{ page.root }}/fig/matrix.png" >
+  <img src="{{ page.root }}/fig/matrix.png" alt="factors"  width="400" />
+</a>
+
+Matrices are used commonly as part of the mathematical machinery of statistics. They are usually of numeric datatype and used in computational algorithms to serve as a checkpoint. For example, if input data is not of identical data type (numeric, character, etc.), the `matrix()` function will throw an error and stop any downstream code execution.
+
+
 ## Data-frames
 
 A `data.frame` is similar to a matrix in that it's a collection of vectors of the **same length** and each vector represents a column. However, in a dataframe **each vector can be of a different data type** (e.g., characters, integers, factors). In the data frame pictured below, the first column is character, the second column is numeric, the third is character, and the fourth is logical.
