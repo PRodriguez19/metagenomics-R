@@ -44,11 +44,13 @@ The R environment combines:
 
 R is a powerful environment. It has a wide range of statistics and general data analysis and visualization capabilities.
 
-* Data handling, wrangling, and storage
-* Wide array of statistical methods and graphical techniques available
-* Easy to install on any platform and use (and it’s free!)
-* Open source with a large and growing community of peers
-* R produces high-quality graphics that are reproducible 
+### Benefits of using/learning R
+
+* **R is interdisciplinary and extensible:** There are 10,000+ packages that can be installed to extend its capabilities. R provides a framework that allows you to combine statistical approaches from many scientific disciplines. 
+* **R works on data of all shapes and sizes:** The skills you learn with R scale easily with the size of your dataset. Whether your dataset has hundreds or thousands of lines, it won't make much difference. R is designed for data analysis, and it comes with special data structures and data types that make handling missing data convenient. 
+* R can connect to spreadsheets, databases, and many other data formats. 
+* **R produces high quality graphics:** The plotting functionalities in R are extensive and allow you to adjust any aspect of your graph to convey most effectively the message from your data. 
+* **R is free!:** Anyone can use it! 
 
 #### Example of R used in the media
 * *"At the BBC data team, we have developed an R package and an R cookbook to make the process of creating publication-ready graphics in our in-house style..."* - [BBC Visual and Data Journalism cookbook for R graphics](https://bbc.github.io/rcookbook/)
@@ -57,29 +59,36 @@ R is a powerful environment. It has a wide range of statistics and general data 
 
 ### What is RStudio?
 
-Here, we will use be using R via RStudio. First time users often confuse the two. At its simplest, R is like a car's engine while RStudio is like a car's dashboard as illustrated in the 
-Figure below.
+<a href="{{ page.root }}/fig/rstudio_logo.png" >
+  <img src="{{ page.root }}/fig/rstudio_logo.png" alt="RStudio logo."  width="300" />
+</a>
+
+RStudio, which is an Integrated Development Environment (IDE) for working with R. First time users often confuse the two. At its simplest, R is like a car's engine while RStudio is like a car's dashboard as illustrated in the Figure below.
 
 
 <a href="{{ page.root }}/fig/R_vs_RStudio_1.png" >
   <img src="{{ page.root }}/fig/R_vs_RStudio_1.png" alt="R vs RStudio." />
 </a>
 
-More precisely, R is a programming language that runs computations, while RStudio is a freely available open-source **integrated development environment (IDE)** that provides an interface by adding many convenient features and tools. So just as the way of having access to a speedometer, rearview mirrors, and a navigation system makes driving much easier, using RStudio's interface makes using R much easier as well. 
+More precisely, R is a programming language that runs computations, while RStudio provides an interface by adding many convenient features and tools. 
 
-> RStudio provides an environment with many features to make using R easier and is a great alternative to working on R in the terminal. 
+### RStudio Interface
 
-<a href="{{ page.root }}/fig/rstudio_logo.png" >
-  <img src="{{ page.root }}/fig/rstudio_logo.png" alt="RStudio logo."  width="300" />
-</a>
+**The RStudio interface has four main panels:**
 
-* Graphical user interface, not just a command prompt
-* Great learning tool 
-* Free for academic use
-* Platform agnostic
-* Open source
+1. **Console**: where you can type commands and see output. *The console is all you would see if you ran R in the command line without RStudio.*
+2. **Script editor**: where you can type out commands and save to file. You can also submit the commands to run in the console.
+3. **Environment/History**: environment shows all active objects and history keeps track of all commands run in console
+4. **Files/Plots/Packages/Help** is a handy browser for your current files, this is where your plots will appear, you can view package information, and much more.
 
-## Creating a new project directory in RStudio
+The placement of these panes and their content can be customized (see menu, Tools -> Global Options -> Pane Layout).
+
+
+## Getting Set Up
+
+It is good practice to keep a set of related data, analyses, and text self-contained in a single folder, called the working directory. All of the scripts within this folder can then use relative paths to files that indicate where inside the project a file is located (as opposed to absolute paths, which point to where a file is on a specific computer). Working this way makes it a lot easier to move your project around on your computer and share it with others without worrying about whether or not the underlying scripts will still work.
+
+RStudio provides a helpful set of tools to do this through its “Projects” interface, which not only creates a working directory for you, but also remembers its location (allowing you to quickly navigate to it) and optionally preserves custom settings and open files to make it easier to resume work after a break. Go through the steps for creating an “R Project” for this tutorial below.
 
 Let's create a new project directory for our "Introduction to R" lesson today. 
 
@@ -87,21 +96,32 @@ Let's create a new project directory for our "Introduction to R" lesson today.
 2. Go to the `File` menu and select `New Project`.
 3. In the `New Project` window, choose `New Directory`. Then, choose `New Project`. Name your new directory `Intro-to-R` and then "Create the project as subdirectory of:" the root of your VACC home account (`~`).
 4. Click on `Create Project`.
-5. After your project is completed, if the project does not automatically open in RStudio, then go to the `File` menu, select `Open Project`, and choose `Intro-to-R.Rproj`.
-6. When RStudio opens, you will see three panels in the window.
-7. Go to the `File` menu and select `New File`, and select `R Script`. 
-8. Go to the `File` menu and select `Save As...`, type `Intro-to-R.R` and select `Save`
 
-The RStudio interface should now look like the screenshot below.
+The RStudio interface should now look like the screenshot below: 
 
 <a href="{{ page.root }}/fig/Rstudio_interface.png" >
   <img src="{{ page.root }}/fig/Rstudio_interface.png" alt="RStudio interface."  width="800" />
 </a>
 
+## Organizing your working directory
 
-### What is a project in RStudio?
+Using a consistent folder structure across your projects will help keep things organised, and will also make it easy to find/file things in the future. This can be especially helpful when you have multiple projects. In general, you may create directories (folders) for **scripts**, **data**, and **documents**.
 
-It is simply a directory that contains everything related your analyses for a specific project. RStudio projects are useful when you are working on context- specific analyses and you wish to keep them separate. When creating a project in RStudio you associate it with a working directory of your choice (either an existing one, or a new one). A `. RProj file` is created within that directory and that keeps track of your command history and variables in the environment. The `.RProj file` can be used to open the project in its current state but at a later date.
+- **`data/`** Use this folder to store your raw data and intermediate datasets you may create for the need of a particular analysis. For the sake of transparency and
+  [provenance](https://en.wikipedia.org/wiki/Provenance), you should *always* keep a copy of your raw data accessible and do as much of your data cleanup and preprocessing programmatically (i.e., with scripts, rather than manually) as possible. Separating raw data from processed data is also a good idea. 
+- **`documents/`** This would be a place to keep outlines, drafts, and other text.
+- **`scripts/`** (or `src`) This would be the location to keep your R scripts for different analyses or plotting, and potentially a separate folder for your functions (more on that later).
+
+You may want additional directories or subdirectories depending on your project needs, but these should form the backbone of your working directory.
+
+<a href="{{ page.root }}fig/working-directory-structure.png" >
+  <img src="{{ page.root }}/fig/working-directory-structure.png" alt="RStudio interface."  width="600" />
+</a>
+
+
+### What happens when you create a R Project?
+
+When creating a project in RStudio you associate it with a working directory of your choice (either an existing one, or a new one). A `. RProj file` is created within that directory and that keeps track of your command history and variables in the environment. The `.RProj file` can be used to open the project in its current state but at a later date.
 
 When a project is **(re) opened** within RStudio the following actions are taken:
  
@@ -115,20 +135,13 @@ When a project is **(re) opened** within RStudio the following actions are taken
 *Information adapted from [RStudio Support Site](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)*
 
 
-## Organizing your working directory & setting up
+## The working directory
 
-### RStudio Interface
+The working directory is an important concept to understand. It is the place from where R will be looking for and saving the files. When you write code for your project, it should refer to files in relation to the root of your working directory and only need files within this structure.
 
-**The RStudio interface has four main panels:**
+Using RStudio projects makes this easy and ensures that your working directory is set properly. If you need to check it, you can use getwd(). If for some reason your working directory is not what it should be, you can change it in the RStudio interface by navigating in the file browser where your working directory should be, and clicking on the blue gear icon More, and select Set As Working Directory. Alternatively you can use setwd("/path/to/working/directory") to reset your working directory. However, your scripts should not include this line because it will fail on someone else’s computer.
 
-1. **Console**: where you can type commands and see output. *The console is all you would see if you ran R in the command line without RStudio.*
-2. **Script editor**: where you can type out commands and save to file. You can also submit the commands to run in the console.
-3. **Environment/History**: environment shows all active objects and history keeps track of all commands run in console
-4. **Files/Plots/Packages/Help** is a handy browser for your current files, this is where your plots will appear, you can view package information, and much more.
-
-### Viewing your working directory
-
-Before we organize our working directory, let's check to see where our current working directory is located by typing into the console:
+Let's check to see where our current working directory is located by typing into the console:
 
 ~~~
 getwd() # return an abolute filepath
@@ -166,11 +179,12 @@ When finished, your working directory should look like:
 </a>
 
 
-### Setting up 
+### Soft Wrap Set up 
 
 This is more of a housekeeping task. In the future, we may be writing long lines of code in our script editor and want to make sure that the lines "wrap" and you don't have to scroll back and forth to look at your long line of code.
 
 Click on Code -> Soft Wrap Long lines (make sure this is checked off)
+
 
 ## Interacting with R
 
