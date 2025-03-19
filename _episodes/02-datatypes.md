@@ -179,7 +179,7 @@ molecules[c(-1, -3)] ## all but 1st/3rd ones
 
 
 
-#### Tips on variable names
+## Tips on variable names
 Variables can be given almost any name, such as `x`, `current_temperature`, or `subject_id`. However, there are some rules / suggestions you should keep in mind:
 
 - Make your names explicit and not too long.
@@ -194,7 +194,8 @@ avoid them.
 - Be consistent with the styling of your code (where you put spaces, how you name variable, etc.). In R, two popular style guides are [Hadley Wickham's style guide](http://adv-r.had.co.nz/Style.html) and [Google's](http://web.stanford.edu/class/cs109l/unrestricted/resources/google-style.html).
 
 ***
-#### Best practices
+
+## Best practices
 
 Before we move on to more complex concepts and getting familiar with the language, we want to point out a few things about best practices when working with R which will help you stay organized in the long run:
 
@@ -204,69 +205,7 @@ Before we move on to more complex concepts and getting familiar with the languag
 
 
 
-### Factors
 
-A **factor** is a special type of vector that is used to **store categorical data**. Each unique category is referred to as a **factor level** (i.e. category = level). Factors are built on top of integer vectors such that each **factor level** is assigned an **integer value**, creating value-label pairs. 
-
-For instance, if we have four animals and the first animal is female, the second and third are male, and the fourth is female, we could create a factor that appears like a vector, but has integer values stored under-the-hood. The integer value assigned is a one for females and a two for males. The numbers are assigned in alphabetical order, so because the f- in females comes before the m- in males in the alphabet, females get assigned a one and males a two. In later lessons we will show you how you could change these assignments.
-
-<a href="{{ page.root }}/fig/factors_sm.png" >
-  <img src="{{ page.root }}/fig/factors_sm.png" alt="factors_sm"  width="400" />
-</a>
-
-
-Let's create a factor vector and explore a bit more.  We'll start by creating a character vector describing three different levels of expression. Perhaps the first value represents expression in mouse1, the second value represents expression in mouse2, and so on and so forth:
-
-~~~
-# Create a character vector and store the vector as a variable called 'expression'
-expression <- c("low", "high", "medium", "high", "low", "medium", "high")
-~~~
-{: .language-r}
-
-
-Now we can convert this character vector into a *factor* using the `factor()` function:
-
-~~~
-# Turn 'expression' vector into a factor
-expression <- factor(expression)
-~~~
-{: .language-r}
-
-
-So, what exactly happened when we applied the `factor()` function? 
-
-<a href="{{ page.root }}/fig/factors_new.png" >
-  <img src="{{ page.root }}/fig/factors_new.png" alt="factors_new"  width="400" />
-</a>
-
-
-The expression vector is categorical, in that all the values in the vector belong to a set of categories; in this case, the categories are `low`, `medium`, and `high`. By turning the expression vector into a factor, the **categories are assigned integers alphabetically**, with high=1, low=2, medium=3. This in effect assigns the different factor levels. You can view the newly created factor variable and the levels in the **Environment** window.
-
-<a href="{{ page.root }}/fig/factors.png" >
-  <img src="{{ page.root }}/fig/factors.png" alt="factors"  width="400" />
-</a>
-
-
-> **Exercise**
-> 
-> Let's say that in our experimental analyses, we are working with three different sets of cells: normal, cells knocked out for geneA (a very exciting gene), and cells overexpressing geneA. We have three replicates for each celltype.
-> 
-> 1. Create a vector named `samplegroup` with nine elements: 3 control ("CTL") values, 3 knock-out ("KO") values, and 3 over-expressing ("OE") values.
-> 
-> 2. Turn `samplegroup` into a factor data structure.
-{: .challenge} 
-
-
-
-## Matrix
-
-A `matrix` in R is a collection of vectors of **same length and identical datatype**. Vectors can be combined as columns in the matrix or by row, to create a 2-dimensional structure.
-
-<a href="{{ page.root }}/fig/matrix.png" >
-  <img src="{{ page.root }}/fig/matrix.png" alt="factors"  width="400" />
-</a>
-
-Matrices are used commonly as part of the mathematical machinery of statistics. They are usually of numeric datatype and used in computational algorithms to serve as a checkpoint. For example, if input data is not of identical data type (numeric, character, etc.), the `matrix()` function will throw an error and stop any downstream code execution.
 
 
 
