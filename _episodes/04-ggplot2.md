@@ -79,7 +79,7 @@ Note that in the code below we are using Bioconductor to then install phyloseq u
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-BiocManager::install("phyloseq")
+BiocManager::install("ggplot2")
 ~~~
 {: .language-r}
 
