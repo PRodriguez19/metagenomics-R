@@ -35,12 +35,9 @@ The type of data will determine what you can do with it. For example, if you wan
 
 ## Data Structures
 
-We know that variables are like buckets, and so far we have seen that bucket filled with a single value. Even when `number` was created, the result of the mathematical operation was a single value. **Variables can store more than just a single value, they can store a multitude of different data structures.** These include, but are not limited to, vectors (`c`), factors (`factor`), matrices (`matrix`), data frames (`data.frame`) and lists (`list`).
+## Vectors and data types
 
-
-### Vectors
-
-A vector is the most common and basic data structure in R, and is pretty much the workhorse of R. It's basically just a collection of values, mainly either numbers,
+A vector is the most common and basic data type in R, and is pretty much the workhorse of R. A vector is composed by a series of values, such as numbers
 
 <a href="{{ page.root }}/fig/vector2.png" >
   <img src="{{ page.root }}/fig/vector2.png" alt="vector2"  width="400" />
@@ -59,9 +56,82 @@ or logical values,
 </a>
 
 
-**Note that all values in a vector must be of the same data type.** If you try to create a vector with more than a single data type, R will try to coerce it into a single data type. 
+We can assign a series of values to a vector using the `c()` function. For example we can create a vector of animal weights and assign it to a new object `weight_g`:
 
-For example, if you were to try to create the following vector:
+~~~
+# Create a numeric vector and store the vector as a variable called 'weight_g'
+weight_g <- c(50, 60, 65, 82)
+weight_g
+~~~
+{: .language-r}
+
+A vector can also contain characters:
+
+~~~
+molecules <- c("dna", "rna", "protein")
+molecules
+~~~
+{: .language-r}
+
+The quotes around "dna", "rna", etc. are essential here. Without the quotes R will assume there are objects called `dna`, `rna` and `protein`. As these objects don't exist in R's memory, there will be an error message.
+
+There are many functions that allow you to inspect the content of a vector. `length()` tells you how many elements are in a particular vector:
+
+~~~
+length(weight_g)
+length(molecules)
+~~~
+{: .language-r}
+
+An important feature of a vector, is that all of the elements are the same type of data.  The function `class()` indicates the class (the type of element) of an object:
+
+~~~
+class(weight_g)
+class(molecules)
+~~~
+{: .language-r}
+
+
+The function `str()` provides an overview of the structure of an object and its elements. It is a useful function when working with large and complex objects:
+
+~~~
+str(weight_g)
+str(molecules)
+~~~
+{: .language-r}
+
+
+You can use the `c()` function to add other elements to your vector:
+
+~~~
+weight_g <- c(weight_g, 90) # add to the end of the vector
+weight_g <- c(30, weight_g) # add to the beginning of the vector
+weight_g
+~~~
+{: .language-r}
+
+
+In the first line, we take the original vector `weight_g`, add the value `90` to the end of it, and save the result back into `weight_g`. Then we add the value `30` to the beginning, again saving the result back into `weight_g`.
+
+> ## Exercise 
+>
+> What will happen in this example? (hint: use `class()` to check the data type of your objects and type in their names to see what happens):
+>
+> ~~~
+> num_char <- c(1, 2, 3, "a")
+> ~~~
+> {: .language-r}
+{: .challenge}
+
+
+
+
+> ## Solution
+> Vectors can be of only one data type. In R, we call converting objects from one class into another class *coercion*. These conversions happen according to a hierarchy, whereby some types get preferentially coerced into other types.
+> logical → numeric → character ← logical
+{: .solution}
+
+If you were to try to create the following vector:
 
 <a href="{{ page.root }}/fig/vector3.png" >
   <img src="{{ page.root }}/fig/vector3.png" alt="vector3"  width="400" />
@@ -75,67 +145,42 @@ R will coerce it into:
 </a>
 
 
-The analogy for a vector is that your bucket now has different compartments; these compartments in a vector are called *elements*. 
+## Subsetting vectors
 
-Each **element** contains a single value, and there is no limit to how many elements you can have. A vector is assigned to a single variable, because regardless of how many elements it contains, in the end it is still a single entity (bucket). 
-
-Let's create a vector of genome lengths and assign it to a variable called `glengths`. 
-
-Each element of this vector contains a single numeric value, and three values will be combined together into a vector using `c()` (the combine function). All of the values are put within the parentheses and separated with a comma.
+If we want to extract one or several values from a vector, we must provide one or several indices in square brackets. For instance:
 
 ~~~
-# Create a numeric vector and store the vector as a variable called 'glengths'
-glengths <- c(4.6, 3000, 50000)
-glengths
+molecules <- c("dna", "rna", "peptide", "protein")
+molecules[2]
+molecules[c(3, 2)]
 ~~~
 {: .language-r}
 
 
-*Note your environment shows the `glengths` variable is numeric (num) and tells you the `glengths` vector starts at element 1 and ends at element 3 (i.e. your vector contains 3 values) as denoted by the [1:3].*
+We can also repeat the indices to create an object with more elements than the original one:
 
-
-A vector can also contain characters. Create another vector called `species` with three elements, where each element corresponds with the genome sizes vector (in Mb).
 
 ~~~
-# Create a character vector and store the vector as a variable called 'species'
-species <- c("ecoli", "human", "corn")
-species
-~~~
-{: .language-r}
-
-What do you think would happen if we forgot to put quotations around one of the values? Let's test it out with corn.
-
-~~~
-# Forget to put quotes around corn
-species <- c("ecoli", "human", corn)
+more_molecules <- molecules[c(1, 2, 3, 2, 1, 4)]
+more_molecules
 ~~~
 {: .language-r}
 
 
-Note that RStudio is quite helpful in color-coding the various data types. We can see that our numeric values are blue, the character values are green, and if we forget to surround corn with quotes, it's black. What does this mean? Let's try to run this code.
-
-When we try to run this code we get an error specifying that object 'corn' is not found. What this means is that R is looking for an object or variable in my Environment called 'corn', and when it doesn't find it, it returns an error. If we had a character vector called 'corn' in our Environment, then it would combine the contents of the 'corn' vector with the values "ecoli" and "human".
-
-Since we only want to add the value "corn" to our vector, we need to re-run the code with the quotation marks surrounding corn. A quick way to add quotes to both ends of a word in RStudio is to highlight the word, then press the quote key.
+Finally, it is also possible to get all the elements of a vector except some specified elements using negative indices:
 
 ~~~
-# Create a character vector and store the vector as a variable called 'species'
-species <- c("ecoli", "human", "corn")
+molecules ## all molecules
+molecules[-1] ## all but the first one
+molecules[-c(1, 3)] ## all but 1st/3rd ones
+molecules[c(-1, -3)] ## all but 1st/3rd ones
 ~~~
 {: .language-r}
-
-
-> ## Exercise 
->
-> Create a vector of numeric and character values by _combining_ the two vectors that we just created (`glengths` and `species`). Assign this combined vector to a new variable called `combined`. *Hint: you will need to use the combine `c()` function to do this*. 
-> Print the `combined` vector in the console, what looks different compared to the original vectors?
-{: .challenge} 
 
 
 
 #### Tips on variable names
-Variables can be given almost any name, such as `x`, `current_temperature`, or
-`subject_id`. However, there are some rules / suggestions you should keep in mind:
+Variables can be given almost any name, such as `x`, `current_temperature`, or `subject_id`. However, there are some rules / suggestions you should keep in mind:
 
 - Make your names explicit and not too long.
 - Avoid names starting with a number (`2x` is not valid but `x2` is)
