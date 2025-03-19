@@ -68,7 +68,7 @@ weight_g
 A vector can also contain characters:
 
 ~~~
-molecules <- c("dna", "rna", "protein")
+molecules <- c("dna", "mrna", "protein", "trna")
 molecules
 ~~~
 {: .language-r}
@@ -118,7 +118,7 @@ In the first line, we take the original vector `weight_g`, add the value `90` to
 > What will happen in this example? (hint: use `class()` to check the data type of your objects and type in their names to see what happens):
 >
 > ~~~
-> num_char <- c(1, 2, 3, "a")
+> num_char <- c(1, 2, 3, "rrna")
 > ~~~
 > {: .language-r}
 {: .challenge}
@@ -150,7 +150,7 @@ R will coerce it into:
 If we want to extract one or several values from a vector, we must provide one or several indices in square brackets. For instance:
 
 ~~~
-molecules <- c("dna", "rna", "peptide", "protein")
+molecules <- c("dna", "mrna", "protein", "trna")
 molecules[2]
 molecules[c(3, 2)]
 ~~~
@@ -171,9 +171,8 @@ Finally, it is also possible to get all the elements of a vector except some spe
 
 ~~~
 molecules ## all molecules
-molecules[-1] ## all but the first one
-molecules[-c(1, 3)] ## all but 1st/3rd ones
-molecules[c(-1, -3)] ## all but 1st/3rd ones
+molecules[-1] ## first one removed
+molecules[-c(1, 3)] ## 1st/3rd removed
 ~~~
 {: .language-r}
 
