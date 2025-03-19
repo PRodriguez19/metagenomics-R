@@ -48,6 +48,10 @@ df
 ~~~
 {: .language-r}
 
+> **Exercise**
+> 
+> Create a data frame with `molecules` and `weight_g`
+{: .challenge} 
 
 #### Data frame example 
 
@@ -63,7 +67,7 @@ df <- data.frame(id = c("a", "b", "c"),
 
 > **Exercise**
 > 
-> Create a data frame called `rna` with the following vectors as columns:
+> Create another data frame called `rna` with the following vectors as columns:
 > 
 >   + gene: Asl, Klk6, Tnc
 >   + sample: GS1, GS2, GS1

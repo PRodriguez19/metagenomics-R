@@ -12,11 +12,200 @@ keypoints:
 
 ## Seeking help
 
-If you face some trouble with some function, let's say `summary()`, you can always type `?summary()`
-and a help page will be displayed with useful information regarding that function. Furthermore, if you
-already know what you want to do, but you do not know which function to use, you can type `??` 
-following your inquiry, for example `??barplot` will open a help file in the RStudio's help
-panel in the lower right corner.
+### Use the built-in RStudio help interface to search for more information on R functions
 
-With this, we have the needed tools to begin our exploration of diversity with R. That does not mean that we have already covered all that R have to offer, if you want to know more about R, we recommend you to check the [R lesson for Reproducible genomic analysis](https://swcarpentry.github.io/r-novice-gapminder/). 
-Let's continue and see what this journey has to offer.
+<a href="{{ page.root }}/fig/rstudiohelp.png" >
+  <img src="{{ page.root }}/fig/rstudiohelp.png" alt="getwd."  width="400" />
+</a>
+
+
+One of the fastest ways to get help, is to use the RStudio help
+interface. This panel by default can be found at the lower right hand
+panel of RStudio. As seen in the screenshot, by typing the word
+"Mean", RStudio tries to also give a number of suggestions that you
+might be interested in. The description is then shown in the display
+window.
+
+### I know the name of the function I want to use, but I'm not sure how to use it
+
+If you need help with a specific function, let's say `barplot()`, you can type:
+
+~~~
+?barplot
+~~~
+{: .language-r}
+
+
+If you just need to remind yourself of the names of the arguments, you can use:
+
+~~~
+args(lm)
+~~~
+{: .language-r}
+
+
+### I want to use a function that does X, there must be a function for it but I don't know which one...
+
+If you are looking for a function to do a particular task, you can use the
+`help.search()` function, which is called by the double question mark `??`.
+However, this only looks through the installed packages for help pages with a
+match to your search request
+
+~~~
+??kruskal
+~~~
+{: .language-r}
+
+If you can't find what you are looking for, you can use
+the [rdocumentation.org](https://www.rdocumentation.org) website that searches
+through the help files across all packages available.
+
+Finally, a generic Google or internet search "R \<task>" will often either send
+you to the appropriate package documentation or a helpful forum where someone
+else has already asked your question.
+
+### I am stuck... I get an error message that I don't understand
+
+Start by googling the error message. However, this doesn't always work very well
+because often, package developers rely on the error catching provided by R. You
+end up with general error messages that might not be very helpful to diagnose a
+problem (e.g. "subscript out of bounds"). If the message is very generic, you
+might also include the name of the function or package you're using in your
+query.
+
+However, you should check Stack Overflow. Search using the `[r]` tag. Most
+questions have already been answered, but the challenge is to use the right
+words in the search to find the
+answers:
+
+[http://stackoverflow.com/questions/tagged/r](https://stackoverflow.com/questions/tagged/r)
+
+The [Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf) can
+also be dense for people with little programming experience but it is a good
+place to understand the underpinnings of the R language.
+
+The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
+but it is full of useful information.
+
+### Asking for help
+
+The key to receiving help from someone is for them to rapidly grasp
+your problem. You should make it as easy as possible to pinpoint where
+the issue might be.
+
+Try to use the correct words to describe your problem. For instance, a
+package is not the same thing as a library. Most people will
+understand what you meant, but others have really strong feelings
+about the difference in meaning. The key point is that it can make
+things confusing for people trying to help you. Be as precise as
+possible when describing your problem.
+
+If possible, try to reduce what doesn't work to a simple *reproducible
+example*. If you can reproduce the problem using a very small data
+frame instead of your 50000 rows and 10000 columns one, provide the
+small one with the description of your problem. When appropriate, try
+to generalize what you are doing so even people who are not in your
+field can understand the question. For instance instead of using a
+subset of your real dataset, create a small (3 columns, 5 rows)
+generic one. For more information on how to write a reproducible
+example see [this article by Hadley
+Wickham](https://adv-r.had.co.nz/Reproducibility.html).
+
+To share an object with someone else, if it's relatively small, you
+can use the function `dput()`. It will output R code that can be used
+to recreate the exact same object as the one in memory:
+
+
+~~~
+## iris is an example data frame that comes with R and head() is a
+## function that returns the first part of the data frame
+dput(head(iris))
+~~~
+{: .language-r}
+
+
+If the object is larger, provide either the raw file (i.e., your CSV
+file) with your script up to the point of the error (and after
+removing everything that is not relevant to your
+issue). Alternatively, in particular if your question is not related
+to a data frame, you can save any R object to a file[^export]:
+
+~~~
+saveRDS(iris, file="/tmp/iris.rds")
+~~~
+{: .language-r}
+
+
+The content of this file is however not human readable and cannot be
+posted directly on Stack Overflow. Instead, it can be sent to someone
+by email who can read it with the `readRDS()` command (here it is
+assumed that the downloaded file is in a `Downloads` folder in the
+user's home directory):
+
+~~~
+some_data <- readRDS(file="~/Downloads/iris.rds")
+~~~
+{: .language-r}
+
+Last, but certainly not least, **always include the output of `sessionInfo()`**
+as it provides critical information about your platform, the versions of R and
+the packages that you are using, and other information that can be very helpful
+to understand your problem.
+
+~~~
+sessionInfo()
+~~~
+{: .language-r}
+
+### Where to ask for help?
+
+- The person sitting next to you during the course. Don't hesitate to
+  talk to your neighbor, compare your answers,
+  and ask for help.
+- Your friendly colleagues: if you know someone with more experience
+  than you, they might be able and willing to help you.
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/r): if
+  your question hasn't been answered before and is well crafted,
+  chances are you will get an answer in less than 5 min. Remember to
+  follow their guidelines on [how to ask a good
+  question](https://stackoverflow.com/help/how-to-ask).
+- The [R-help mailing
+  list](https://stat.ethz.ch/mailman/listinfo/r-help): it is read by a
+  lot of people (including most of the R core team), a lot of people
+  post to it, but the tone can be pretty dry, and it is not always
+  very welcoming to new users. If your question is valid, you are
+  likely to get an answer very fast but don't expect that it will come
+  with smiley faces. Also, here more than anywhere else, be sure to
+  use correct vocabulary (otherwise you might get an answer pointing
+  to the misuse of your words rather than answering your
+  question). You will also have more success if your question is about
+  a base function rather than a specific package.
+- If your question is about a specific package, see if there is a
+  mailing list for it. Usually it's included in the DESCRIPTION file
+  of the package that can be accessed using
+  `packageDescription("name-of-package")`. You may also want to try to
+  email the author of the package directly, or open an issue on the
+  code repository (e.g., GitHub).
+
+
+### More resources
+
+- The [Posting Guide](https://www.r-project.org/posting-guide.html) for
+  the R mailing lists.
+
+- [How to ask for R
+  help](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+  useful guidelines.
+
+- [This blog post by Jon
+  Skeet](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+  has quite comprehensive advice on how to ask programming questions.
+
+- The [reprex](https://cran.rstudio.com/web/packages/reprex/) package
+  is very helpful to create reproducible examples when asking for
+  help. The rOpenSci community call "How to ask questions so they get
+  answered" ([Github
+  link](https://github.com/ropensci/commcalls/issues/14) and [video
+  recording](https://vimeo.com/208749032)) includes a presentation of
+  the reprex package and of its philosophy.
+
